@@ -1,0 +1,11 @@
+airlinesData = [{id:0,name:'Southwest Airlines',logo_url:'http://cloud2.whattheflight.com/images/wtf/logos/airlines/southwest-airlines.jpg'},
+{id:1,name:'Delta Air Lines',logo_url:'http://cloud2.whattheflight.com/images/wtf/logos/airlines/delta-air-lines.gif'},
+{id:2,name:'American Airlines',logo_url:'http://cloud1.whattheflight.com/images/wtf/logos/airlines/American_Airlines_logo_2013_svg.png'},
+{id:3,name:'United Airlines',logo_url:'http://cloud2.whattheflight.com/images/wtf/logos/airlines/united_tm.jpg'},
+{id:4,name:'JetBlue Airlines',logo_url:'http://cloud2.whattheflight.com/images/wtf/logos/airlines/jetblue-airways.jpg'},
+{id:5,name:'SkyWest Airlines',logo_url:'http://cloud2.whattheflight.com/images/wtf/logos/airlines/sky-west-airlines.gif'},
+{id:6,name:'Falcon Air',logo_url:'http://cloud2.whattheflight.com/images/wtf/logos/airlines/falcon-aviation-ab.gif'},
+{id:7,name:'Spirit Air Lines',logo_url:'http://cloud2.whattheflight.com/images/wtf/logos/airlines/spirit-airlines.gif'},
+{id:8,name:'Regional Airlines',logo_url:'http://cloud2.whattheflight.com/images/wtf/logos/airlines/regional.gif'},
+{id:9,name:'Eaglexpress',logo_url:'http://cloud1.whattheflight.com/images/wtf/logos/airlines/Eaglexpress.jpg'},
+]

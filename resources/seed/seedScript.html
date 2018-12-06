@@ -13,7 +13,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 
     <!--Data bases-->
-    <script src="data/airports.js"></script>
+    <script src="data/airportsData.js"></script>
+    <script src="data/planesAndSeatsData.js"></script>
+  
 
     <title>Database Seed Script</title>
 
@@ -29,9 +31,7 @@
 
 
         // Airlines
-        const airlines = [
-          // fill with airlines
-        ];
+        const airlines = airlinesData;
 
 
         // Airports
@@ -57,9 +57,7 @@
 
 
         // Seats
-        const seats = [
-          // fill with seats
-        ];
+        const seats = seatsData;
 
 
         // Tickets
@@ -69,9 +67,7 @@
 
 
         // Planes
-        const planes = [
-          // fill with planes
-        ];
+        const planes = planesData;
 
 
         /**
@@ -215,11 +211,11 @@
           }).then(function() {
             return create('itineraries', itineraries);
           }).then(function() {
-            return create('seats', seats);
+            return create('planes', planes);
           }).then(function() {
             return create('tickets', tickets);
           }).then(function() {
-            return create('planes', planes);
+            return create('seats', seats);
           }).then(function() {
             $('#message').html('<strong class="text-success">Finished!</strong>');
           }).fail(function() {
