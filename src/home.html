@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html lang = "en">
+  <head>
+    <h1>Welcome To Tar Heel International!</h1>
+    <meta charset = "UTF-8" />
+  </head>
+  <body>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    $( function() {
+        $("#datepicker1,#datepicker2").datepicker();
+    } );
+    </script>
+
+    <h3>Customize Your Flight</h3>
+    <form id="flightOptions" action="">
+        
+        <div class="trip_options">
+        <input id="oneWayTrip" type="radio" name="flight" value="oneway">One Way Trip
+        <input  id="roundTrip" type="radio" name="flight" value="roundtrip">Round Trip<br>
+        </div>
+        <div class="city_options">
+        Departure: <input id="depart" type="text" name="Departure" placeholder="City or Airport">
+        Arrival: <input id="arrive" type="text" name="Arrival" placeholder="City or Airport"><br>
+        </div>
+        <div class="date_options">
+                Departure Date: <input id="datepicker1" type="text" name="Departure">
+                Return Date: <input id="datepicker2" type="text" name="Arrival"><br>
+        </div>  
+        
+      </form>
+        
+  </body>
+  </html>
+  
