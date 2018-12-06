@@ -2,6 +2,9 @@ var root = "http://comp426.cs.unc.edu:3001/";
 var user = "jnmurari"
 var password = "730085553"
 
+var date1;
+var date2;
+
 $(document).ready(() => {
     //Login to database
     $.ajax(root + 'sessions',
