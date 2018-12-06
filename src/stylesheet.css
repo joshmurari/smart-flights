@@ -47,3 +47,11 @@ input[type=submit] {
   background-color: DodgerBlue !important; 
   color: #ffffff; 
 }
+
+.ui-datepicker-header {
+  padding-top: 100px;
+}
+
+.ui-datepicker-calendar {
+  padding-top: 10px;
+}
