@@ -31,5 +31,7 @@ $(document).ready(() => {
 function makeHomePage() {
     //Empty body and rename title
     $('body').empty();
-    $('title').text('UNC Smart Flights Home Page');
+	$('title').text('UNC Smart Flights Home Page');
+	
+	//Edit by tejas
 }
