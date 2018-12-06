@@ -10,23 +10,26 @@
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   
     <h3>Customize Your Flight</h3>
-    <form id="flightOptions" action="">
         
         <div class="trip_options">
         <input id="oneWayTrip" type="radio" name="flight" value="oneway">One Way Trip
         <input  id="roundTrip" type="radio" name="flight" value="roundtrip">Round Trip<br>
         </div>
         <div class="city_options">
-        Departure: <input id="depart" type="text" name="Departure" placeholder="City or Airport">
-        Arrival: <input id="arrive" type="text" name="Arrival" placeholder="City or Airport"><br>
+            <form autocomplete="off" action="/action_page.php">
+              <div class="autocomplete" style="width:300px;">
+                Departure: <input id="myInput" type="text" name="myCountry" placeholder="Arrival Airport">
+              </div>
+              <input type="submit">
+            </form>
+
+          Arrival: <input id="arrive" type="text" name="Arrival" placeholder="Departure Airport"><br>
         </div>
         <div class="date_options">
                 Departure Date: <input id="datepicker1" type="text" name="Departure">
                 Return Date: <input id="datepicker2" type="text" name="Arrival"><br>
         </div>  
         
-      </form>
         
   </body>
   </html>
-  
