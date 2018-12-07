@@ -49,9 +49,18 @@ input[type=submit] {
 }
 
 .ui-datepicker-header {
-  padding-top: 100px;
+  padding-top: 80px;
 }
 
-.ui-datepicker-calendar {
-  padding-top: 10px;
+.ui-datepicker-title {
+  padding-left: 10px;
+}
+
+.ui-corner-all {
+  padding-left: 20px;
+  border-radius: 4px;
+  font-family: "arial-black";
+  font-size: 14px;
+  color: rgb(2, 97, 97);
+  cursor: pointer;  
 }
