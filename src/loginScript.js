@@ -6,7 +6,7 @@ var date1;
 var date2;
 
 $(document).ready(() => {
-    makeHomePage();
+   
     $('#sumbit_login').on('click', () => {
 	
 	let user = $('#usr').val();
@@ -73,7 +73,7 @@ function makeHomePage() {
   <div class="bookFlightPage"> 
   <h3>Customize Your Flight</h3>
         <div class="trip_options">
-        <input id="oneWayTrip" class="option-input radio" type="radio" name="flight" value="oneway"> One Way Trip &nbsp;
+        <input id="oneWayTrip" class="option-input radio" type="radio" name="flight" value="oneway">One Way Trip &nbsp;
         <input  id="roundTrip" class="option-input radio" type="radio" name="flight" value="roundtrip"> Round Trip<br>
         </div>
         <div class="city_options">
