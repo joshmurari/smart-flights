@@ -5,6 +5,10 @@ var password = "730085553"
 var date1;
 var date2;
 var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+today = yyyy + '-' + mm + '-' + dd;
 
 $(document).ready(() => {
    
@@ -253,10 +257,6 @@ function findFlights(){
 	var departureDate = $('#departureDate').val()
 	console.log(`Departure Date = ${departureDate}`);
 
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
-	today = yyyy + '-' + mm + '-' + dd;
 	console.log(today);
 	console.log(departureDate < today);
 	if (departureDate < today) {
@@ -361,11 +361,10 @@ function findFlights(){
 			}	
 		}
 	}); 
-
-}
 	
 	//Get weather info
 	updateWeather(departure,arrival);
+}
 }
 
 function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
