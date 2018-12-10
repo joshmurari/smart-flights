@@ -525,3 +525,47 @@ body {
 	0% {margin-left: 1000px;}
 	100% {margin-left: -1000px;}
 }
+
+#weather-info {
+  padding-top: 100px;
+}
+
+#optionHeader {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 30px;
+  text-align: center;
+  color:  #19314b;
+}
+
+#flight_options{
+  padding-top: 110px;
+}
+
+th {
+  padding-top: 10px;
+  text-align: center;
+  color:  #19314b;
+}
+
+td {
+  padding-top: 10px;
+  text-align: center;
+  color:  #245181;
+}
+
+#departure-weather {
+  text-align: center;
+  color:  #245181;
+}
+
+#header {
+  background: #ffffff;
+}
+
+tr:nth-child(even) {
+  background: #71a0d3;
+}
+
+tr:nth-child(odd) {
+  background: rgb(163, 156, 228);
+}

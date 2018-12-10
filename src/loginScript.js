@@ -4,6 +4,12 @@ var username = "jnmurari"
 var password = "730085553"
 var date1;
 var date2;
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1;
+var yyyy = today.getFullYear();
+today = yyyy + '-' + mm + '-' + dd;
+todStr = mm + '-' + dd + '-' + yyyy;
 
 $(document).ready(() => {
    
@@ -254,7 +260,14 @@ function findFlights(){
 	//Get Departure Date
 	var departureDate = $('#departureDate').val()
 	console.log(`Departure Date = ${departureDate}`);
-	
+
+	console.log(today);
+	console.log(departureDate < today);
+	if (departureDate < today) {
+
+		alert("Please select a date after: " + todStr);
+	}
+	else {
 	//Check if valid departure and arrival
 	$.ajax(root + 'airports', {
 		type: 'GET',
@@ -356,6 +369,7 @@ function findFlights(){
 	//Get weather info
 	updateWeather(departure,arrival);
 }
+}
 
 function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 	$('#flight-picker').empty();
@@ -372,7 +386,7 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 		//Add flights table
 		$('#flight_options').append('<table id="flightsTable"></table');
 		$('#flightsTable').append(`
-		<tr>
+		<tr id="header">
 			<th>Airline</th>
 			<th>Flight Number</th>
 			<th>Departure Date</th>
@@ -427,11 +441,8 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 							$('#flightsTable').append(row);
 						}
 					});
-						
-					
-
-				}
-			}); 
+				}		
+			});
 		}
 	}else{
 		$('#optionHeader').text("We could not find any flights leaving on your specific date. Please choose a different date or add a flight in the Admin page:");
