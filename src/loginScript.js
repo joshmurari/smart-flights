@@ -7,9 +7,9 @@ var date2;
 
 $(document).ready(() => {
    
-    $('#sumbit_login').on('click', () => {
+    $('#submit_login').on('click', () => {
 	
-	let user = $('#usr').val();
+	let user = $('#user').val();
 	let pass = $('#pass').val();
 	
 	$.ajax(loginRoot + 'login',
@@ -36,8 +36,12 @@ $(document).ready(() => {
 
 function makeHomePage() {
 	//Create Home Body
-	$('body').empty();
-  homebody = `
+  $('body').empty();
+
+var foobarElement = document.getElementById('main-body');
+ foobarElement.style.background = 'none';
+
+homebody = `
 
   <div id="clouds">
   <div class="cloud x1"></div>
@@ -79,8 +83,8 @@ function makeHomePage() {
         <div class="city_options">
             <div autocomplete="off">
               <div class="autocomplete" style="width:300px;">
-				Departure: <input id="departureInput" type="text" name="Departure" placeholder="Arrival Airport">
-				Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Departure Airport"><br>
+				Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport">
+				Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br>
 			  </div>
 			  <div class="date_options">
                 Departure Date: &nbsp; <input id="departureDate" type="date" name="Departure">

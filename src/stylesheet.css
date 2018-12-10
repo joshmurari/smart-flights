@@ -1,18 +1,97 @@
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 
-h3 {
+#user, #pass {
+  width: 30%;
+  position: relative;
+  left: 505px;
+  top: 40px;
+}
 
+h1 {
+
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 80px;
+  text-align: center;
+  color:  #19314b;
+
+
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
   font-family: 'Didact Gothic', sans-serif;
   font-size: 50px;
   position: relative;
   bottom: 5px;
   left: 28px;
+  color:  #19314b;
 
+}
+
+.loginpage {
+  background-image: url("unc.png");
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #departureDate, #returnDate {
   font-family: 'Didact Gothic', sans-serif;
 }
+
+#terms{
+  position: relative;
+  bottom: -400px;
+  left: 510px;
+}
+
+#submit_login {
+  outline:0; 
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 20px;
+  font-weight:600;
+  background:#fff;
+  position: relative;
+  bottom: -350px;
+  border:none;
+  padding:2em 4em;
+  position: relative;
+  right: -615px;
+  top: 325px;
+  transition:all .3s ease-out; 
+  box-shadow:inset 0 -8px 0 0 rgba(0,0,0,.2),
+    1px 1px 0 0 #9FB9DA,
+    2px 2px 0 0 #9FB9DA,
+    3px 3px 0 0 #9FB9DA,
+    4px 4px 0 0 #9FB9DA,
+    5px 5px 0 0 #9FB9DA,
+    6px 6px 0 0 #9FB9DA,
+    7px 7px 0 0 #9FB9DA,
+    8px 8px 0 0 #9FB9DA,
+    9px 9px 0 0 #9FB9DA,
+    10px 10px 0 0 #9FB9DA,
+    11px 11px 0 0 #9FB9DA,
+    12px 12px 0 0 #9FB9DA;
+}
+
+#submit_login:hover{
+  color:#444;
+}
+
+#submit_login:active{
+  color:#222;
+  box-shadow:inset 0 -4px 0 0 rgba(0,0,0,.2),
+    1px 1px 0 0 #9FB9DA,
+    2px 2px 0 0 #9FB9DA,
+    3px 3px 0 0 #9FB9DA,
+    4px 4px 0 0 #9FB9DA,
+    5px 5px 0 0 #9FB9DA;
+}
+
 
 .trip_options {
   font-size: 15px;
@@ -309,6 +388,15 @@ a:hover {
 body {
 	/*To hide the horizontal scroller appearing during the animation*/
   overflow: hidden;
+  background-image: url("unc.png");
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 0px;
+  
 
 }
 
