@@ -35,8 +35,11 @@ $(document).ready(() => {
 });
 
 function makeHomePage() {
-	//Create Home Body
-  $('body').empty();
+//TODO
+//do nothing if already on home page
+
+//Create Home Body
+$('body').empty();
 
 var foobarElement = document.getElementById('main-body');
  foobarElement.style.background = 'none';
@@ -58,16 +61,16 @@ homebody = `
       </div>
       <ul>
         <li>
-          <a href="" class="hover_link">Home</a>
+          <a href="#" onclick="makeHomePage();" class="hover_link">Home</a>
         </li>
         <li>
-          <a href="" class="hover_link">Bookings</a>
+          <a href="#" class="hover_link">Bookings</a>
         </li>
         <li>
-          <a href="" class="hover_link">Access Boarding Pass</a>
+          <a href="#" onclick="makeAdminPage();" class="hover_link">Admin</a>
         </li>
         <li>
-          <a href="" class="hover_link">Log Out</a>
+          <a href="#s" class="hover_link">Log Out</a>
         </li>
       </ul>
     </nav>
@@ -237,7 +240,7 @@ function autocomplete(inp, arr) {
 
   /*execute a function when someone clicks in the document:*/
 document.addEventListener("click", function (e) {
-      closeAllLists(e.target);
+      closeAllLists(e.tasrget);
   	});
 }
 
@@ -313,6 +316,7 @@ function findFlights(){
 							console.log(flightIds);
 
 							//Get flight instances
+							let flightInstances=[];
 							for(let i =0; i<flightIds.length;i++){
 								$.ajax(root + `instances?filter[flight_id]=${flightIds[i]}&filter[date]=${departureDate}`, {
 									type: 'GET',
@@ -320,26 +324,24 @@ function findFlights(){
 									xhrFields: {withCredentials: true},
 									success: (response) => {
 										if(response.length===0){
-											//Cound not find flights with that date, only flights with dates below are possible
-											for(let i =0; i<flightIds.length;i++){
-												$.ajax(root + `instances?filter[flight_id]=${flightIds[i]}`, {
-													type: 'GET',
-													dataType: 'json',
-													xhrFields: {withCredentials: true},
-													success: (response) => {
-														console.log("Dates not found, only these dates available:")
-														console.log(response);
-														buildFlightsInterface(false,response,arrival,departure);
-													}
-												}); 
-											}
 										}else{
 											console.log("Dates found!");
 											console.log(response);
-											buildFlightsInterface(true,response,arrival,departure);
+											//Add responces to flight instances
+											for(let i=0;i<response.length;i++){
+												flightInstances.push(response[i]);
+											}
 										}
-									}
+									},
+									async: false
 								}); 
+							}
+
+							//No flights are found
+							if(flightInstances.length<=0){
+								buildFlightsInterface(false,flightInstances,arrival,departure);		
+							}else{//Flights are found
+								buildFlightsInterface(true,flightInstances,arrival,departure);
 							}
 						}else{
 							//Show that there are no flights, with the option to add a flight
@@ -366,82 +368,73 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 
 	if(dateFound){
 		$('#optionHeader').text("Here are the flights we have found with your specific date:");
+
+		//Add flights table
+		$('#flight_options').append('<table id="flightsTable"></table');
+		$('#flightsTable').append(`
+		<tr>
+			<th>Airline</th>
+			<th>Flight Number</th>
+			<th>Departure Date</th>
+			<th>Departure Time</th>
+			<th>Departure Airport</th>
+			<th>Arrival Date</th>
+			<th>Arrival Time</th>
+			<th>Arrival Airport</th>
+			<th>Select Flight</th>
+		</tr>
+		`);
+
+		for(let i=0;i<flightInstances.length;i++){
+			//Get flight Id
+			let flightId = flightInstances[i].flight_id;
+			let date = flightInstances[i].date;
+
+			//Get flight info
+			$.ajax(root + `flights/${flightId}`, {
+				type: 'GET',
+				dataType: 'json',
+				xhrFields: {withCredentials: true},
+				success: (response) => {
+					//Get departure time
+					let departureTime = (new Date(response.departs_at)).toLocaleTimeString();
+					//Get arrival time
+					let arrivalTime = (new Date(response.arrives_at)).toLocaleTimeString();
+					//Get flight number
+					let flightNumber = response.number;
+					//Get airlineId
+					let airlineId = response.airline_id;
+
+					//Get airline Info
+					$.ajax(root + `airlines/${airlineId}`, {
+						type: 'GET',
+						dataType: 'json',
+						xhrFields: {withCredentials: true},
+						success: (response) => {
+							let airlineName = response.name;
+	
+							//Create row
+							let row = $('<tr></tr>');
+							row.append(`<td>${airlineName}</td>`);
+							row.append(`<td>${flightNumber}</td>`);
+							row.append(`<td>${date}</td>`);
+							row.append(`<td>${departureTime}</td>`);
+							row.append(`<td>${departure}</td>`);
+							row.append(`<td>${date}</td>`);
+							row.append(`<td>${arrivalTime}</td>`);
+							row.append(`<td>${arrival}</td>`);
+							row.append(`<td><button onclick="bookFlight()">Book Flight</button></td>`);
+							$('#flightsTable').append(row);
+						}
+					});
+						
+					
+
+				}
+			}); 
+		}
 	}else{
-		$('#optionHeader').text("We could not find any flights leaving on your specific date, please choose from one of the flights below:");
-	}
-
-	//Add flights table
-	$('#flight_options').append('<table id="flightsTable"></table');
-	$('#flightsTable').append(`
-	<tr>
-		<th>Airline</th>
-		<th>Flight Number</th>
-		<th>Departure Date</th>
-		<th>Departure Time</th>
-		<th>Departure Airport</th>
-		<th>Arrival Date</th>
-		<th>Arrival Time</th>
-		<th>Arrival Airport</th>
-		<th>Select Flight</th>
-	</tr>
-	`);
-
-	for(let i=0;i<flightInstances.length;i++){
-		//Get flight Id
-		let flightId = flightInstances[i].flight_id;
-		let date = flightInstances[i].date;
-
-		//Get flight info
-		$.ajax(root + `flights/${flightId}`, {
-			type: 'GET',
-			dataType: 'json',
-			xhrFields: {withCredentials: true},
-			success: (response) => {
-				//Get departure time
-				let departureTime = (new Date(response.departs_at)).toLocaleTimeString();
-				//Get arrival time
-				let arrivalTime = (new Date(response.arrives_at)).toLocaleTimeString();
-				//Get flight number
-				let flightNumber = response.number;
-
-				//Plane id
-				let planeId = response.plane_id;
-				
-				//Get plane info
-				$.ajax(root + `planes/${planeId}`, {
-					type: 'GET',
-					dataType: 'json',
-					xhrFields: {withCredentials: true},
-					success: (response) => {
-						let airlineId = response.airline_id;
-
-						//Get airline Info
-						$.ajax(root + `airlines/${airlineId}`, {
-							type: 'GET',
-							dataType: 'json',
-							xhrFields: {withCredentials: true},
-							success: (response) => {
-								let airlineName = response.name;
-		
-								//Create row
-								let row = $('<tr></tr>');
-								row.append(`<td>${airlineName}</td>`);
-								row.append(`<td>${flightNumber}</td>`);
-								row.append(`<td>${date}</td>`);
-								row.append(`<td>${departureTime}</td>`);
-								row.append(`<td>${departure}</td>`);
-								row.append(`<td>${date}</td>`);
-								row.append(`<td>${arrivalTime}</td>`);
-								row.append(`<td>${arrival}</td>`);
-								row.append(`<td><button onclick="bookFlight()">Book Flight</button></td>`);
-								$('#flightsTable').append(row);
-							}
-						});
-					}
-				}); 
-
-			}
-		}); 
+		$('#optionHeader').text("We could not find any flights leaving on your specific date. Please choose a different date or add a flight in the Admin page:");
 	}
 }
 
@@ -504,7 +497,7 @@ function updateWeather(departure, arrival){
 										success: (response) => {
 											console.log("Weather:");
 											console.log(response.main.temp);
-											$('#departure-weather').text(`Weather at ${arrivalName}: ${response.main.temp}`);
+											$('#arrival-weather').text(`Weather at ${arrivalName}: ${response.main.temp}`);
 										}
 									}); 					
 								}
@@ -515,4 +508,250 @@ function updateWeather(departure, arrival){
 			});
 		}
     }); 	 
+}
+
+function makeAdminPage(){
+	//TODO
+	//do nothing if already on admin page
+
+	//Create Home Body
+	$('body').empty();
+
+	var foobarElement = document.getElementById('main-body');
+	foobarElement.style.background = 'none';
+
+	homebody = `
+	<div id="clouds">
+	<div class="cloud x1"></div>
+	<div class="cloud x2"></div>
+	<div class="cloud x3"></div>
+	<div class="cloud x4"></div>
+	<div class="cloud x5"></div>
+	</div>
+
+	<section id="frontpage">
+	<div class="navbar">
+		<nav>
+		<div class="logo">
+			<a href="#"></a>
+		</div>
+		<ul>
+			<li>
+			<a href="#" onclick="makeHomePage();" class="hover_link">Home</a>
+			</li>
+			<li>
+			<a href="#" class="hover_link">Bookings</a>
+			</li>
+			<li>
+			<a href="#" onclick="makeAdminPage();" class="hover_link">Admin</a>
+			</li>
+			<li>
+			<a href="#" class="hover_link">Log Out</a>
+			</li>
+		</ul>
+		</nav>
+	</div>
+
+	<div class="adminPage"> 
+	<h3>Add New flights</h3>
+			<div class="admin_options">
+				<div autocomplete="off">
+				<div class="autocomplete" style="width:300px;">
+					Airline: <input id="airlineInput" type="text" name="Airline" placeholder="Airline">
+					Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport">
+					Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br>
+				</div>
+				<div class="date_options">
+					Flight Number: <input type="number" id="flightNumber" name="Flight Number">
+					Departure Date: &nbsp; <input id="departureDate" type="date" name="Departure">
+					&nbsp; &nbsp;
+					Departure Time: &nbsp; <input id="departureTime" type="time" name="Departure Time">
+					&nbsp;
+					Arrival Time: &nbsp; <input id="arrivalTime" type="time" name="Arrival Time">
+					&nbsp;
+					<button id="addflightButton" onclick="addFlight()">Add Flights</button>
+				</div>
+			</div>
+			<div id="flight-adder"></div>
+		</div>
+	`;
+	
+	$('body').append(homebody);
+
+	//Put in stylesheet because it dissappears for some reason
+	$('head').append('<link rel="stylesheet" type="text/css" href="stylesheet.css">')
+
+	//Set autocomplete for departure airports
+	//Get all airports
+	let airportsArray = getAllAirports();
+	let airlinesArray = getAllAirlines();
+	autocomplete(document.getElementById("airlineInput"), airlinesArray);
+	autocomplete(document.getElementById("departureInput"), airportsArray);
+	autocomplete(document.getElementById("arrivalInput"), airportsArray);
+}
+
+function getAllAirlines(){
+	let airlines = [];
+    $.ajax(root + 'airlines', {
+		type: 'GET',
+		dataType: 'json',
+		xhrFields: {withCredentials: true},
+		success: (response) => {
+            for(let i=0; i< response.length;i++){
+                airlines.push(response[i].name);
+            }
+		}
+    }); 
+    
+	return airlines;
+}
+
+function addFlight(){
+	//Get Airline
+	var airline = $('#airlineInput').val()
+	console.log(`Airline = ${airline}`)
+	//Get Departure Airport
+	var departure = $('#departureInput').val()
+	console.log(`Departure = ${departure}`)
+	//Get Arrival Airport
+	var arrival = $('#arrivalInput').val()
+	console.log(`Arrival = ${arrival}`)
+	//Get Flight Number
+	var flightNumber = $('#flightNumber').val()
+	console.log(`Flight Number = ${flightNumber}`)
+	//Get Departure Date
+	var departureDate = $('#departureDate').val()
+	console.log(`Departure Date = ${departureDate}`);
+	//Get Departure Time
+	var departureTime = $('#departureTime').val()
+	console.log(`Departure Time = ${departureTime}`);
+	//Get Arrival Time
+	var arrivalTime = $('#arrivalTime').val()
+	console.log(`Arrival Time = ${arrivalTime}`);
+
+	//Check inputs
+	//Check if valid airline
+	$.ajax(root + 'airlines', {
+		type: 'GET',
+		dataType: 'json',
+		xhrFields: {withCredentials: true},
+		success: (response) => {
+			//Check if valid airlines
+			var isValidAirline = false;
+			var airlineIndex =0;
+			
+            for(let i=0; i< response.length;i++){
+				if(response[i].name===airline){
+					isValidAirline=true;
+					airlineIndex=i;
+				}
+			}
+
+			//Continue with query if valid airline
+			if(!isValidAirline){
+				alert(`Airline:"${airline}" Not Found! Please enter a valid airline.`);
+			}else{
+				console.log(`Is valid Airline: ${isValidAirline}`);
+				var airlineId = response[airlineIndex].id
+				
+				//Check if valid departure and arrival
+				$.ajax(root + 'airports', {
+					type: 'GET',
+					dataType: 'json',
+					xhrFields: {withCredentials: true},
+					success: (response) => {
+						//Check if valid airports
+						var isValidArrival = false;
+						var arrivalIndex =0;
+						var isValidDeparture = false;
+						var departureIndex = 0;
+
+						for(let i=0; i< response.length;i++){
+							if(response[i].name===departure){
+								isValidDeparture=true;
+								departureIndex=i;
+							}
+							if(response[i].name===arrival){
+								isValidArrival=true;
+								arrivalIndex=i;
+							}
+						}
+
+						//Continue with query if valid airport
+						if(!isValidDeparture || !isValidArrival){
+							var airportNotFound = '';
+							if(!isValidDeparture){
+								airportNotFound = departure; 
+							}else{
+								airportNotFound = arrival
+							}
+							alert(`Airport:"${airportNotFound}" Not Found! Please enter a valid airport.`);
+						}else{
+							console.log(`Is valid Departure: ${isValidDeparture}`);
+							console.log(`Is valid Arrival: ${isValidArrival}`);
+
+							var departureId = response[departureIndex].id
+							var arrivalId = response[arrivalIndex].id
+
+							//Submit post request with parameters
+							/*"flight": {
+								"departs_at":   "12:00",
+								"arrives_at":   "12:00",
+								"number":       "AAA 2667",
+								"departure_id": 130599,
+								"arrival_id":   130598
+							}	*/
+							$.ajax(root + 'flights', {
+								type: 'POST',
+								dataType: 'json',
+								xhrFields: {withCredentials: true},
+								data: {
+									flight: {
+										departs_at:departureTime,
+										arrives_at:arrivalTime,
+										number:flightNumber,
+										departure_id:departureId,
+										arrival_id:arrivalId,
+										airline_id:airlineId
+									}
+								},
+								success: (response) => {
+									console.log("Successfully created flight");
+									console.log(response);
+
+									let flightId = response.id;
+
+									//Create flight instance
+									/*{
+										"instance": {
+											"flight_id": 1,
+											"date":      "2018-12-21"
+										}
+										}*/
+									$.ajax(root + 'instances', {
+										type: 'POST',
+										dataType: 'json',
+										xhrFields: {withCredentials: true},
+										data: {
+											instance: {
+												flight_id:flightId,
+												date:departureDate
+											}
+										},
+										success: (response) => {
+											console.log("Successfully created flight Instance");
+											console.log(response);
+		
+											//Create flight instance
+											alert(`Successfully created flight:${flightNumber} traveling from:${departure} at:${departureTime} to: ${arrival} at:${arrivalTime} on date:${departureDate}`);
+										}
+									});
+								}
+							});
+						}	
+					}
+				});		
+			}	
+		}
+	});  
 }
