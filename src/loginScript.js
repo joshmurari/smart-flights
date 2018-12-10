@@ -6,9 +6,10 @@ var date1;
 var date2;
 
 $(document).ready(() => {
-    $('#sumbit_login').on('click', () => {
+   
+    $('#submit_login').on('click', () => {
 	
-	let user = $('#usr').val();
+	let user = $('#user').val();
 	let pass = $('#pass').val();
 	
 	$.ajax(loginRoot + 'login',
@@ -35,27 +36,67 @@ $(document).ready(() => {
 
 function makeHomePage() {
 	//Create Home Body
-	$('body').empty();
-	homebody = `
-	<h3>Customize Your Flight</h3>
+  $('body').empty();
+
+var foobarElement = document.getElementById('main-body');
+ foobarElement.style.background = 'none';
+
+homebody = `
+
+  <div id="clouds">
+  <div class="cloud x1"></div>
+  <div class="cloud x2"></div>
+  <div class="cloud x3"></div>
+  <div class="cloud x4"></div>
+  <div class="cloud x5"></div>
+  </div>
+
+  <section id="frontpage">
+  <div class="navbar">
+    <nav>
+      <div class="logo">
+        <a href="#"></a>
+      </div>
+      <ul>
+        <li>
+          <a href="" class="hover_link">Home</a>
+        </li>
+        <li>
+          <a href="" class="hover_link">Bookings</a>
+        </li>
+        <li>
+          <a href="" class="hover_link">Access Boarding Pass</a>
+        </li>
+        <li>
+          <a href="" class="hover_link">Log Out</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="bookFlightPage"> 
+  <h3>Customize Your Flight</h3>
         <div class="trip_options">
-        <input id="oneWayTrip" type="radio" name="flight" value="oneway">One Way Trip
-        <input  id="roundTrip" type="radio" name="flight" value="roundtrip">Round Trip<br>
+        <input id="oneWayTrip" class="option-input radio" type="radio" name="flight" value="oneway">One Way Trip &nbsp;
+        <input  id="roundTrip" class="option-input radio" type="radio" name="flight" value="roundtrip"> Round Trip<br>
         </div>
         <div class="city_options">
             <div autocomplete="off">
               <div class="autocomplete" style="width:300px;">
 				Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport">
-				Arrival: <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br>
+				Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br>
 			  </div>
 			  <div class="date_options">
-                Departure Date: <input id="departureDate" type="date" name="Departure">
-                Return Date: <input id="returnDate" type="date" name="Return">
+                Departure Date: &nbsp; <input id="departureDate" type="date" name="Departure">
+                &nbsp; &nbsp; Return Date: &nbsp;<input id="returnDate" type="date" name="Arrival">
 				</div>	
-				<button onclick="findFlights()">Find Flights</button>
+				<button id="findflightButton" onclick="findFlights()">Find Flights</button>
             </div>
         </div>
-	`;
+        </div>
+
+  `;
+  
 	$('body').append(homebody);
 
 	//Login to database

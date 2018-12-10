@@ -1,6 +1,127 @@
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
+
+#user, #pass {
+  width: 30%;
+  position: relative;
+  left: 505px;
+  top: 40px;
+}
+
+h1 {
+
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 80px;
+  text-align: center;
+  color:  #19314b;
+
+
+}
+
+h2 {
+  text-align: center;
+}
+
+h3 {
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 50px;
+  position: relative;
+  bottom: 5px;
+  left: 28px;
+  color:  #19314b;
+
+}
+
+.loginpage {
+  background-image: url("unc.png");
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#departureDate, #returnDate {
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+#terms{
+  position: relative;
+  bottom: -400px;
+  left: 510px;
+}
+
+#submit_login {
+  outline:0; 
+  font-family: 'Didact Gothic', sans-serif;
+  font-size: 20px;
+  font-weight:600;
+  background:#fff;
+  position: relative;
+  bottom: -350px;
+  border:none;
+  padding:2em 4em;
+  position: relative;
+  right: -615px;
+  top: 325px;
+  transition:all .3s ease-out; 
+  box-shadow:inset 0 -8px 0 0 rgba(0,0,0,.2),
+    1px 1px 0 0 #9FB9DA,
+    2px 2px 0 0 #9FB9DA,
+    3px 3px 0 0 #9FB9DA,
+    4px 4px 0 0 #9FB9DA,
+    5px 5px 0 0 #9FB9DA,
+    6px 6px 0 0 #9FB9DA,
+    7px 7px 0 0 #9FB9DA,
+    8px 8px 0 0 #9FB9DA,
+    9px 9px 0 0 #9FB9DA,
+    10px 10px 0 0 #9FB9DA,
+    11px 11px 0 0 #9FB9DA,
+    12px 12px 0 0 #9FB9DA;
+}
+
+#submit_login:hover{
+  color:#444;
+}
+
+#submit_login:active{
+  color:#222;
+  box-shadow:inset 0 -4px 0 0 rgba(0,0,0,.2),
+    1px 1px 0 0 #9FB9DA,
+    2px 2px 0 0 #9FB9DA,
+    3px 3px 0 0 #9FB9DA,
+    4px 4px 0 0 #9FB9DA,
+    5px 5px 0 0 #9FB9DA;
+}
+
+
+.trip_options {
+  font-size: 15px;
+  position: relative;
+  left: 30px;
+  bottom: -10px;
+}
+
+
+.city_options {
+  position: relative;
+  bottom: -30px;
+  left: 30px;
+
+}
+
+.date_options {
+  position: relative;
+  bottom: -30px;
+}
+
+.autocomplete {
+  font-size: 16px;  
+  font-family: 'Didact Gothic', sans-serif;
+
+}
+
 * { box-sizing: border-box; }
 body {
-  font: 16px Arial; 
+  font-family: 'Didact Gothic', sans-serif;
 }
 .autocomplete {
   /*the container must be positioned relative:*/
@@ -63,4 +184,340 @@ input[type=submit] {
   font-size: 14px;
   color: rgb(2, 97, 97);
   cursor: pointer;  
+}
+
+/* FIND FLIGHT BUTTON */
+
+#findflightButton {
+  position: relative;
+  bottom: -65px;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  background-color: #538fbe;
+  padding: 20px 70px;
+  font-size: 24px;
+  font-family: 'Didact Gothic', sans-serif;
+  border: 1px solid #2d6898;
+
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, rgb(73,132,180)),
+      color-stop(1, rgb(97,155,203))
+  );
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 0px -1px 0px rgba(0,0,0,.5);
+  -webkit-box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+  -moz-box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+  box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+}
+
+#findflightButton:active {
+
+-webkit-box-shadow: 0px 2px 0px #2b638f, 0px 1px 6px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+-moz-box-shadow: 0px 2px 0px #2b638f, 0px 1px 6px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+box-shadow: 0px 2px 0px #2b638f, 0px 1px 6px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+
+-webkit-transform: translate(0, 4px);
+-moz-transform: translate(0, 4px);
+transform: translate(0, 4px);
+
+-webkit-transition: all .1s ease-in-out;
+-moz-transition: all .2s ease-in-out;
+transition: all .2s ease-in-out;
+
+}
+
+#findflightButton:focus {outline:0;}
+
+/* RADIO BUTTONS */
+
+.option-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  position: relative;
+  top: 13.33333px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  width: 40px;
+  transition: all 0.15s ease-out 0s;
+  background: #cbd1d8;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 0.5rem;
+  outline: none;
+  position: relative;
+  z-index: 1000;
+}
+.option-input:hover {
+  background: #9faab7;
+}
+.option-input:checked {
+  background: #538fbe;
+}
+.option-input:checked::before {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  display: inline-block;
+  font-size: 27px;
+  text-align: center;
+  line-height: 40px;
+}
+.option-input:checked::after {
+  -webkit-animation: click-wave 0.65s;
+  -moz-animation: click-wave 0.65s;
+  animation: click-wave 0.65s;
+  background: #1e90ff;
+  content: '';
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+.option-input.radio {
+  border-radius: 50%;
+}
+.option-input.radio::after {
+  border-radius: 50%;
+}
+
+/* MAIN NAVIGATION BAR */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+.scrolled {
+  background-color: #181818;
+  transition: 0.3s;
+}
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  padding: 2rem;
+  text-align: center;
+  color: #6093ca;
+  font-family: 'Didact Gothic', sans-serif;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+li:last-child {
+  padding-right: 50px;
+}
+
+li a {
+  display: block;
+  color: #1e3b59;
+  text-decoration: none;
+  font-family: 'Didact Gothic', sans-serif;
+  font-weight: bold;
+  font-size: 20px;
+  letter-spacing: 1.2px;
+  text-align: center;
+  padding: 14px 16px;
+  transition: ease-in-out 0.3s;
+}
+
+a:hover {
+  transition: ease-in-out 0.3s;
+}
+
+::selection {
+  color: #1e3b59;
+  background: #1e3b59;
+}
+
+.hover_link {
+  color: #1e3b59;
+}
+
+.hover_link:after {
+  border-bottom: 3px solid #1e3b59
+  content: "";
+  display: block;
+  margin: 0.25em auto 0;
+  transition: width 250ms ease-in-out 0s;
+  width: 0;
+}
+
+.hover_link:hover:after {
+  transition: width 100ms ease-in-out 0s;
+  width: 100%;
+}
+
+
+
+/*Lets start with the cloud formation rather*/
+
+/*The container will also serve as the SKY*/
+
+*{ margin: 0; padding: 0;}
+
+body {
+	/*To hide the horizontal scroller appearing during the animation*/
+  overflow: hidden;
+  background-image: url("unc.png");
+  height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: 0px;
+  
+
+}
+
+.bookFlightPage{
+  position: relative;
+  bottom: 300px;
+}
+
+#clouds{
+	padding: 100px 0;
+	background: #c9dbe9;
+	background: -webkit-linear-gradient(top, #99badd 0%, #fff 100%);
+	background: -linear-gradient(top, #99badd 0%, #fff 100%);
+	background: -moz-linear-gradient(top, #99badd 0%, #fff 100%);
+}
+
+/*Time to finalise the cloud shape*/
+.cloud {
+	width: 200px; height: 60px;
+	background: #fff;
+	
+	border-radius: 200px;
+	-moz-border-radius: 200px;
+	-webkit-border-radius: 200px;
+	
+  position: relative;
+  bottom: -100px;
+}
+
+.cloud:before, .cloud:after {
+	content: '';
+	position: absolute; 
+	background: #fff;
+	width: 100px; height: 80px;
+	position: absolute; top: -15px; left: 10px;
+	
+	border-radius: 100px;
+	-moz-border-radius: 100px;
+	-webkit-border-radius: 100px;
+	
+	-webkit-transform: rotate(30deg);
+	transform: rotate(30deg);
+	-moz-transform: rotate(30deg);
+}
+
+.cloud:after {
+	width: 120px; height: 120px;
+	top: -55px; left: auto; right: 15px;
+}
+
+/*Time to animate*/
+.x1 {
+	-webkit-animation: moveclouds 15s linear infinite;
+	-moz-animation: moveclouds 15s linear infinite;
+	-o-animation: moveclouds 15s linear infinite;
+}
+
+/*variable speed, opacity, and position of clouds for realistic effect*/
+.x2 {
+	left: 200px;
+	
+	-webkit-transform: scale(0.6);
+	-moz-transform: scale(0.6);
+	transform: scale(0.6);
+	opacity: 0.6; /*opacity proportional to the size*/
+	
+	/*Speed will also be proportional to the size and opacity*/
+	/*More the speed. Less the time in 's' = seconds*/
+	-webkit-animation: moveclouds 25s linear infinite;
+	-moz-animation: moveclouds 25s linear infinite;
+	-o-animation: moveclouds 25s linear infinite;
+}
+
+.x3 {
+	left: -250px; top: -200px;
+	
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	transform: scale(0.8);
+	opacity: 0.8; /*opacity proportional to the size*/
+	
+	-webkit-animation: moveclouds 20s linear infinite;
+	-moz-animation: moveclouds 20s linear infinite;
+	-o-animation: moveclouds 20s linear infinite;
+}
+
+.x4 {
+	left: 470px; top: -250px;
+	
+	-webkit-transform: scale(0.75);
+	-moz-transform: scale(0.75);
+	transform: scale(0.75);
+	opacity: 0.75; /*opacity proportional to the size*/
+	
+	-webkit-animation: moveclouds 18s linear infinite;
+	-moz-animation: moveclouds 18s linear infinite;
+	-o-animation: moveclouds 18s linear infinite;
+}
+
+.x5 {
+	left: -150px; top: -150px;
+	
+	-webkit-transform: scale(0.8);
+	-moz-transform: scale(0.8);
+	transform: scale(0.8);
+	opacity: 0.8; /*opacity proportional to the size*/
+	
+	-webkit-animation: moveclouds 20s linear infinite;
+	-moz-animation: moveclouds 20s linear infinite;
+	-o-animation: moveclouds 20s linear infinite;
+}
+
+@-webkit-keyframes moveclouds {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+@-moz-keyframes moveclouds {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
+}
+@-o-keyframes moveclouds {
+	0% {margin-left: 1000px;}
+	100% {margin-left: -1000px;}
 }

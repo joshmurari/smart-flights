@@ -2,31 +2,27 @@
 <html>
 
 <head>
-  <h1>Welcome To Tar Heel International!</h1>
-  <title>Login Portal for UNC-Smart-Flights</title>
   <link rel="stylesheet" type="text/css" href="stylesheet.css">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="loginScript.js"></script>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700,300italic" />
+
 </head>
+<h1>Welcome to Tar Heel International!</h1>
+<h2>Login Portal for UNC Smart Flights</h2>
+<body id="main-body">
 
-<body>
-  <div id="login-container">
-    <div class="login-box">
-        <h1>Login to UNC-Smart-Flights</h1>
-        <h2>Please enter you Onyen and PID to continue onto the review site.</h2>
-        <h3>Note: This website is only for UNC students.</h3>
 
-        <div id="login-container-box">
-          <input type="text" id="usr" placeholder="Onyen"><br>
-          <input type="text" id="pass" placeholder="PID"><br>
-          <button id="sumbit_login" type="login">Login</button>
-        </div>
+    <div id="login-container-box">
+        <input type="text" id="user" placeholder="Onyen"><br>
+        <input type="text" id="pass" placeholder="PID"><br>
+        <button id="submit_login" type="login">Login</button>
+      </div>
 
-        <p>By accessing our website you agree to our <a href="terms.html" style="color:dodgerblue">Terms & Privacy</a>.</p>
+      <p id="terms">By accessing our website you agree to our <a href="terms.html" style="color:dodgerblue">Terms & Privacy</a>.</p>
 
-        <div id="err-mssg-conatiner"></div>
-    </div>
-  </div>
 </body>
 
 </html>
