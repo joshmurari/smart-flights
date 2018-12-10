@@ -9,6 +9,7 @@ var dd = today.getDate();
 var mm = today.getMonth()+1;
 var yyyy = today.getFullYear();
 today = yyyy + '-' + mm + '-' + dd;
+todStr = mm + '-' + dd + '-' + yyyy;
 
 $(document).ready(() => {
    
@@ -260,7 +261,8 @@ function findFlights(){
 	console.log(today);
 	console.log(departureDate < today);
 	if (departureDate < today) {
-		alert("Please choose a date after today's date.");
+
+		alert("Please select a date after: " + todStr);
 	}
 	else {
 	//Check if valid departure and arrival
@@ -385,7 +387,7 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 	//Add flights table
 	$('#flight_options').append('<table id="flightsTable"></table');
 	$('#flightsTable').append(`
-	<tr>
+	<tr id = "header">
 		<th>Airline</th>
 		<th>Flight Number</th>
 		<th>Departure Date</th>
