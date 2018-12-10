@@ -364,7 +364,7 @@ a:hover {
 }
 
 .hover_link:after {
-  border-bottom: 3px solid #1e3b59
+  border-bottom: 3px solid #1e3b59;
   content: "";
   display: block;
   margin: 0.25em auto 0;
@@ -387,7 +387,6 @@ a:hover {
 
 body {
 	/*To hide the horizontal scroller appearing during the animation*/
-  overflow: hidden;
   background-image: url("unc.png");
   height: 100%; 
 
@@ -403,6 +402,11 @@ body {
 .bookFlightPage{
   position: relative;
   bottom: 300px;
+}
+
+#flight-picker{
+  overflow: scroll;
+  height: 30%;
 }
 
 #clouds{

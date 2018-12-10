@@ -42,7 +42,6 @@ var foobarElement = document.getElementById('main-body');
  foobarElement.style.background = 'none';
 
 homebody = `
-
   <div id="clouds">
   <div class="cloud x1"></div>
   <div class="cloud x2"></div>
@@ -76,10 +75,6 @@ homebody = `
 
   <div class="bookFlightPage"> 
   <h3>Customize Your Flight</h3>
-        <div class="trip_options">
-        <input id="oneWayTrip" class="option-input radio" type="radio" name="flight" value="oneway">One Way Trip &nbsp;
-        <input  id="roundTrip" class="option-input radio" type="radio" name="flight" value="roundtrip"> Round Trip<br>
-        </div>
         <div class="city_options">
             <div autocomplete="off">
               <div class="autocomplete" style="width:300px;">
@@ -88,13 +83,17 @@ homebody = `
 			  </div>
 			  <div class="date_options">
                 Departure Date: &nbsp; <input id="departureDate" type="date" name="Departure">
-                &nbsp; &nbsp; Return Date: &nbsp;<input id="returnDate" type="date" name="Arrival">
-				</div>	
+                &nbsp; &nbsp; &nbsp;
 				<button id="findflightButton" onclick="findFlights()">Find Flights</button>
             </div>
-        </div>
-        </div>
-
+		</div>
+		<div id="flight-picker"></div>
+	</div>
+	
+	<div id="weather-info">
+	<div id="departure-weather"></div>
+	<div id="arrival-weather"></div>
+	</div>
   `;
   
 	$('body').append(homebody);
@@ -276,17 +275,15 @@ function findFlights(){
 				}
 			}
 
-			//Return option to add an airport
+			//Continue with query if valid airport
 			if(!isValidDeparture || !isValidArrival){
-				//TODO
 				var airportNotFound = '';
 				if(!isValidDeparture){
 					airportNotFound = departure; 
 				}else{
 					airportNotFound = arrival
 				}
-				alert(`Airport:"${airportNotFound}" Not Found!
-				Please enter a valid airport, or add a new airport into our system!`);
+				alert(`Airport:"${airportNotFound}" Not Found! Please enter a valid airport.`);
 			}else{
 				console.log(`Is valid Departure: ${isValidDeparture}`);
 				console.log(`Is valid Arrival: ${isValidArrival}`);
@@ -294,6 +291,7 @@ function findFlights(){
 				var departureId = response[departureIndex].id
 				var arrivalId = response[arrivalIndex].id
 
+				//Get flights between both airports
 				$.ajax(root + `flights?filter[departure_id]=${departureId}&filter[arrival_id]=${arrivalId}`, {
 					type: 'GET',
 					dataType: 'json',
@@ -302,6 +300,7 @@ function findFlights(){
 						console.log("Flights with specifed departure airport and arrival airport:");
 						console.log(response);
 
+						//If flights exist
 						if(response.length>0){
 							var flightIds = [];
 							//Get unique flight id's
@@ -343,27 +342,28 @@ function findFlights(){
 								}); 
 							}
 						}else{
-							//TODO
 							//Show that there are no flights, with the option to add a flight
-							alert(`No flights found between those airports!
-							Please choose a different airport or add a new flight into our system!`)
+							alert(`No flights found between those airports! Please choose a different airport or add a new flight into our system!`)
 						}
 					}
 				}); 
 			}	
 		}
-    }); 
+	}); 
+	
+	//Get weather info
+	updateWeather(departure,arrival);
 }
 
 function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
-	$('body').empty();
+	$('#flight-picker').empty();
 	var flightsInterface = `
-	<h3>Choose from these flights!</h3>
         <div id="flight_options">
         <div id="optionHeader"></div>
         </div>
 	`;
-	$('body').append(flightsInterface);
+	$('#flight-picker').append(flightsInterface);
+
 	if(dateFound){
 		$('#optionHeader').text("Here are the flights we have found with your specific date:");
 	}else{
@@ -382,7 +382,7 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 		<th>Arrival Date</th>
 		<th>Arrival Time</th>
 		<th>Arrival Airport</th>
-		<th>Book Flight</th>
+		<th>Select Flight</th>
 	</tr>
 	`);
 
@@ -433,7 +433,7 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 								row.append(`<td>${date}</td>`);
 								row.append(`<td>${arrivalTime}</td>`);
 								row.append(`<td>${arrival}</td>`);
-								row.append(`<td><button onclick="bookFlight()">Select Flight</button></td>`);
+								row.append(`<td><button onclick="bookFlight()">Book Flight</button></td>`);
 								$('#flightsTable').append(row);
 							}
 						});
@@ -442,33 +442,77 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 
 			}
 		}); 
-
-
 	}
-/*
-<table style="width:100%">
-  <tr>
-    <th>Firstname</th>
-    <th>Lastname</th> 
-    <th>Age</th>
-  </tr>
-  <tr>
-    <td>Jill</td>
-    <td>Smith</td>
-    <td>50</td>
-  </tr>
-  <tr>
-    <td>Eve</td>
-    <td>Jackson</td>
-    <td>94</td>
-  </tr>
-  <tr>
-    <td>John</td>
-    <td>Doe</td>
-    <td>80</td>
-  </tr>
-</table>
-*/
-	//Create table
-	console.log("Build flights interface");
+}
+
+function updateWeather(departure, arrival){
+	//Get airport data
+	$.ajax(root + 'airports', {
+		type: 'GET',
+		dataType: 'json',
+		xhrFields: {withCredentials: true},
+		success: (response) => {
+			let departureIndex = 0;
+			let arrivalIndex = 0;
+			
+			//Get Ids
+            for(let i=0; i< response.length;i++){
+				if(response[i].name===departure){
+					departureIndex=i;
+				}
+				if(response[i].name===arrival){
+					arrivalIndex=i;
+				}
+			}
+
+			var departure_id = response[departureIndex].id;
+			var arrival_id = response[arrivalIndex].id;
+
+			//Get departure airport
+			$.ajax(root + `airports/${departure_id}`, {
+				type: 'GET',
+				dataType: 'json',
+				xhrFields: {withCredentials: true},
+				success: (response) => {
+					let departureName = response.name;
+					let departureLat = response.latitude;
+					let departureLon = response.longitude;
+
+					//Get weather at departure
+					$.ajax(`http://api.openweathermap.org/data/2.5/weather?lat=${departureLat}&lon=${departureLon}&units=imperial&appid=b198f1c7bc6bd22f60f1b42994a05686`, {
+						type: 'GET',
+						dataType: 'json',
+						success: (response) => {
+							console.log("Weather:");
+							console.log(response.main.temp);
+							$('#departure-weather').text(`Weather at ${departureName}: ${response.main.temp}`);
+
+							//Get arrival airport
+							$.ajax(root + `airports/${arrival_id}`, {
+								type: 'GET',
+								dataType: 'json',
+								xhrFields: {withCredentials: true},
+								success: (response) => {
+									let arrivalName = response.name;
+									let arrivalLat = response.latitude;
+									let arrivalLon = response.longitude;
+
+									//Get weather at departure
+									$.ajax(`http://api.openweathermap.org/data/2.5/weather?lat=${arrivalLat}&lon=${arrivalLon}&units=imperial&appid=b198f1c7bc6bd22f60f1b42994a05686`, {
+										type: 'GET',
+										dataType: 'json',
+										success: (response) => {
+											console.log("Weather:");
+											console.log(response.main.temp);
+											$('#departure-weather').text(`Weather at ${arrivalName}: ${response.main.temp}`);
+										}
+									}); 					
+								}
+							});
+						}
+					}); 					
+				}
+			});
+		}
+    }); 	 
 }
