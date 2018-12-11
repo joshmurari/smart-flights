@@ -13,7 +13,7 @@ todStr = mm + '-' + dd + '-' + yyyy;
 
 $(document).ready(() => {
 	makeHomePage();
-	fillValuesInTextBoxes();
+	//fillValuesInTextBoxes();
     $('#submit_login').on('click', () => {
 	
 	let user = $('#user').val();
