@@ -14,10 +14,10 @@ today = yyyy + '-' + mm + '-' + dd;
 todStr = mm + '-' + dd + '-' + yyyy;
 
 $(document).ready(() => {
-	makeHomePage();
+	//makeHomePage();
 	$("#weather-infos").hide();
 	$("#sortByButton").hide();
-	fillValuesInTextBoxes();
+	//fillValuesInTextBoxes();
 
     $('#submit_login').on('click', () => {
 	
@@ -118,9 +118,9 @@ homebody = `
 <div class="dropdown">
   <button id="sortByButton" class="dropbtn">Sort By</button>
   <div class="dropdown-content">
-    <a href="#">Arrival Time</a>
-    <a href="#">Departure Time</a>
-    <a href="#">Price</a>
+    <a href="#" onclick="sortTable('arrival');">Arrival Time</a>
+    <a href="#" onclick="sortTable('departure');">Departure Time</a>
+    <a href="#" onclick="sortTable('travel');">Travel Time</a>
   </div>
   `;
   
@@ -904,3 +904,84 @@ function fillValuesInTextBoxes()
     text1.value = "Raleigh Durham International Airport";
     text2.value = "Miami International Airport";
 }
+
+function sortTable(string) {
+	console.log(string);
+	var table, rows, switching, i, x, y, xnew, ynew, xde, yde, xdenew, ydenew, shouldSwitch;
+	table = document.getElementById("flightsTable");
+	switching = true;
+	/* Make a loop that will continue until
+	no switching has been done: */
+	while (switching) {
+	  // Start by saying: no switching is done:
+	  switching = false;
+	  rows = table.rows;
+	  box = table.rows[1].cells;
+	  tej = box[0].innerHTML;
+
+
+	  console.log(tej);
+	  /* Loop through all table rows (except the
+	  first, which contains table headers): */
+	  for (i = 1; i < (rows.length - 1); i++) {
+		// Start by saying there should be no switching:
+		shouldSwitch = false;
+		/* Get the two elements you want to compare,
+		one from current row and one from the next: */
+		
+
+		if(string == "arrival") {
+			//Sorting by arrival time
+			x = '' + rows[i].cells[4].innerHTML + ' ' + rows[i].cells[5].innerHTML;
+			y = '' + rows[i + 1].cells[4].innerHTML + ' ' + rows[i + 1].cells[5].innerHTML;
+			console.log(x);
+			xnew = new Date(x);
+			ynew = new Date(y);
+
+			if (xnew > ynew) {
+			// If so, mark as a switch and break the loop:
+			shouldSwitch = true;
+			break;
+			}
+		} else if(string == "departure") {
+			//Sorting by departure time
+			x = '' + rows[i].cells[2].innerHTML + ' ' + rows[i].cells[3].innerHTML;
+			y = '' + rows[i + 1].cells[2].innerHTML + ' ' + rows[i + 1].cells[3].innerHTML;
+			console.log(x);
+			xnew = new Date(x);
+			ynew = new Date(y);
+
+			if (xnew > ynew) {
+			// If so, mark as a switch and break the loop:
+			shouldSwitch = true;
+			break;
+			}
+		} else if (string == "travel") {
+			//Sorting by travel time
+			xde = '' + rows[i].cells[2].innerHTML + ' ' + rows[i].cells[3].innerHTML;
+			yde = '' + rows[i + 1].cells[2].innerHTML + ' ' + rows[i + 1].cells[3].innerHTML;
+			
+			xar = '' + rows[i].cells[4].innerHTML + ' ' + rows[i].cells[5].innerHTML;
+			yar = '' + rows[i + 1].cells[4].innerHTML + ' ' + rows[i + 1].cells[5].innerHTML;
+
+			xdenew = new Date(xde);
+			ydenew = new Date(yde);
+
+			xarnew = new Date(xar);
+			yarnew = new Date(yar);
+
+			if (xarnew - xdenew > yarnew - ydenew) {
+			// If so, mark as a switch and break the loop:
+			shouldSwitch = true;
+			break;
+			}
+		}
+	  }
+	  if (shouldSwitch) {
+		/* If a switch has been marked, make the switch
+		and mark that a switch has been done: */
+		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+		switching = true;
+	  }
+	}
+  }
