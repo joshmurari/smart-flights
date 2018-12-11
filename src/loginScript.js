@@ -468,7 +468,7 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 			});
 		}
 	}else{
-		$('#optionHeader').text("We could not find any flights leaving on your specific date. Please choose a different date or add a flight in the Admin page.");
+		$('#optionHeader').text("Please choose a different date or add a flight as an Adminstrator.");
 	}
 }
 
@@ -800,10 +800,10 @@ function bookFlight(instanceId,flightNumber,airlineName,departureDate,departureA
 	<form>
 	  First Name: <input id="firstName" type="text" name="First Name" placeholder="First Name" requried>
 	  Last Name: <input id="lastName" type="text" name="Last Name" placeholder="Last Name" requried>
-	  Age: <input id="age" type="number" name="Last Name" placeholder="Age" requried>
-	  Gender: <select id="gender" name="gender">
+	  <div id="ageform"> Age: <input id="age" type="number" name="Last Name" placeholder="Age" requried> </div>
+	  <div id="genderform"> Gender: <select id="gender" name="gender"> </div>
 	  	<option value="male">Male</option>
-	  	<option value="female">Female</option>
+		<option  value="female">Female</option>
 	  </select>
 	  </form>
 	`;
