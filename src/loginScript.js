@@ -12,7 +12,8 @@ today = yyyy + '-' + mm + '-' + dd;
 todStr = mm + '-' + dd + '-' + yyyy;
 
 $(document).ready(() => {
-   
+	makeHomePage();
+	fillValuesInTextBoxes();
     $('#submit_login').on('click', () => {
 	
 	let user = $('#user').val();
@@ -82,19 +83,21 @@ homebody = `
     </nav>
   </div>
 
+
   <div class="bookFlightPage"> 
   <h3>Customize Your Flight</h3>
         <div class="city_options">
             <div autocomplete="off">
               <div class="autocomplete" style="width:300px;">
-				Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport">
-				Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br>
+		<div id="depatureform"> &nbsp; Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport" autofocus> </div>
+		<div id="arrivalform"> &nbsp; Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br> </div>
 			  </div>
+			  
 			  <div class="date_options">
-                Departure Date: &nbsp; <input id="departureDate" type="date" name="Departure">
+				<p id="depdate"> Departure Date: &nbsp; </p>
+				</div><input id="departureDate" type="date" name="Departure">
                 &nbsp; &nbsp; &nbsp;
 				<button id="findflightButton" onclick="findFlights()">Find Flights</button>
-            </div>
 		</div>
 		<div id="flight-picker"></div>
 	</div>
@@ -103,6 +106,14 @@ homebody = `
 	<div id="departure-weather"></div>
 	<div id="arrival-weather"></div>
 	</div>
+
+<div class="dropdown">
+  <button class="dropbtn">Sort By</button>
+  <div class="dropdown-content">
+    <a href="#">Arrival Time</a>
+    <a href="#">Departure Time</a>
+    <a href="#">Price</a>
+  </div>
   `;
   
 	$('body').append(homebody);
@@ -374,8 +385,9 @@ function findFlights(){
 function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 	$('#flight-picker').empty();
 	var flightsInterface = `
-        <div id="flight_options">
-        <div id="optionHeader"></div>
+	
+		<div id="flight_options">
+		<div id="optionHeader"></div>
         </div>
 	`;
 	$('#flight-picker').append(flightsInterface);
@@ -387,15 +399,14 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 		$('#flight_options').append('<table id="flightsTable"></table');
 		$('#flightsTable').append(`
 		<tr id="header">
-			<th>Airline</th>
-			<th>Flight Number</th>
-			<th>Departure Date</th>
-			<th>Departure Time</th>
-			<th>Departure Airport</th>
-			<th>Arrival Date</th>
-			<th>Arrival Time</th>
-			<th>Arrival Airport</th>
-			<th>Select Flight</th>
+		<div id="longFlightTable">
+			<th>Flight Number&nbsp;&nbsp;</th>
+			<th>Airline&nbsp;&nbsp;</th>
+			<th>Departure Date&nbsp;&nbsp;</th>
+			<th>Departure Time&nbsp;&nbsp;</th>
+			<th>Arrival Date&nbsp;&nbsp;</th>
+			<th>Arrival Time&nbsp;&nbsp;</th>
+		</div>
 		</tr>
 		`);
 
@@ -429,15 +440,15 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 	
 							//Create row
 							let row = $('<tr></tr>');
-							row.append(`<td>${airlineName}</td>`);
 							row.append(`<td>${flightNumber}</td>`);
+							row.append(`<td>${airlineName}</td>`);
 							row.append(`<td>${date}</td>`);
 							row.append(`<td>${departureTime}</td>`);
-							row.append(`<td>${departure}</td>`);
+							//row.append(`<td>${departure}</td>`);
 							row.append(`<td>${date}</td>`);
 							row.append(`<td>${arrivalTime}</td>`);
-							row.append(`<td>${arrival}</td>`);
-							row.append(`<td><button onclick="bookFlight()">Book Flight</button></td>`);
+							//row.append(`<td>${arrival}</td>`);
+							row.append(`<td><button id="bookFlightButton" Flight()">Book Flight</button></td>`);
 							$('#flightsTable').append(row);
 						}
 					});
@@ -445,12 +456,13 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 			});
 		}
 	}else{
-		$('#optionHeader').text("We could not find any flights leaving on your specific date. Please choose a different date or add a flight in the Admin page:");
+		$('#optionHeader').text("We could not find any flights leaving on your specific date. Please choose a different date or add a flight in the Admin page.");
 	}
 }
 
 function updateWeather(departure, arrival){
 	//Get airport data
+
 	$.ajax(root + 'airports', {
 		type: 'GET',
 		dataType: 'json',
@@ -489,7 +501,8 @@ function updateWeather(departure, arrival){
 						success: (response) => {
 							console.log("Weather:");
 							console.log(response.main.temp);
-							$('#departure-weather').text(`Weather at ${departureName}: ${response.main.temp}`);
+							let weatherDepature = Math.round(response.main.temp);
+							$('#departure-weather').text(`Weather at ${departureName}: ${weatherDepature}`);
 
 							//Get arrival airport
 							$.ajax(root + `airports/${arrival_id}`, {
@@ -508,7 +521,8 @@ function updateWeather(departure, arrival){
 										success: (response) => {
 											console.log("Weather:");
 											console.log(response.main.temp);
-											$('#arrival-weather').text(`Weather at ${arrivalName}: ${response.main.temp}`);
+											let weatherArrival = Math.round(response.main.temp);
+											$('#arrival-weather').text(`Weather at ${arrivalName}: ${weatherArrival}`);
 										}
 									}); 					
 								}
@@ -564,22 +578,19 @@ function makeAdminPage(){
 	</div>
 
 	<div class="adminPage"> 
-	<h3>Add New flights</h3>
+	<h3 id="admin-title">Add New Flights</h3>
 			<div class="admin_options">
 				<div autocomplete="off">
-				<div class="autocomplete" style="width:300px;">
+				<div id="add-flight-details" class="autocomplete" style="width:300px;">
 					Airline: <input id="airlineInput" type="text" name="Airline" placeholder="Airline">
 					Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport">
 					Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br>
 				</div>
 				<div class="date_options">
-					Flight Number: <input type="number" id="flightNumber" name="Flight Number">
-					Departure Date: &nbsp; <input id="departureDate" type="date" name="Departure">
-					&nbsp; &nbsp;
-					Departure Time: &nbsp; <input id="departureTime" type="time" name="Departure Time">
-					&nbsp;
-					Arrival Time: &nbsp; <input id="arrivalTime" type="time" name="Arrival Time">
-					&nbsp;
+					&nbsp; Flight Number : &nbsp; &nbsp;<input type="number" id="flightNumber" name="Flight Number" placeholder="Enter Flight Number">
+					&nbsp; Date : &nbsp; &nbsp; <input id="departure-date" type="date" name="Departure">
+					&nbsp; Departure Time : &nbsp; <input id="departure-time" type="time" name="Departure Time">
+					&nbsp; &nbsp;Arrival Time : &nbsp; <input id="arrival-time" type="time" name="Arrival Time">
 					<button id="addflightButton" onclick="addFlight()">Add Flights</button>
 				</div>
 			</div>
@@ -765,4 +776,13 @@ function addFlight(){
 			}	
 		}
 	});  
+}
+
+
+function fillValuesInTextBoxes()
+{
+	var text1 = document.getElementById("departureInput");
+	var text2 = document.getElementById("arrivalInput");
+    text1.value = "Raleigh Durham International Airport";
+    text2.value = "Miami International Airport";
 }
