@@ -1,7 +1,9 @@
 var loginRoot = "http://comp426.cs.unc.edu:3002/api/";
 var root = "http://comp426.cs.unc.edu:3001/";
-var username = "jnmurari"
-var password = "730085553"
+var flightUserOnyen = "";
+var username = "jnmurari";
+var password = "730085553";
+var userTicketIds = [];
 var date1;
 var date2;
 var today = new Date();
@@ -16,6 +18,7 @@ $(document).ready(() => {
     $('#submit_login').on('click', () => {
 	
 	let user = $('#user').val();
+	flightUserOnyen=user;
 	let pass = $('#pass').val();
 	
 	$.ajax(loginRoot + 'login',
@@ -437,7 +440,7 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 							row.append(`<td>${date}</td>`);
 							row.append(`<td>${arrivalTime}</td>`);
 							row.append(`<td>${arrival}</td>`);
-							row.append(`<td><button onclick="bookFlight()">Book Flight</button></td>`);
+							row.append(`<td><button onclick="bookFlight(${flightInstances[i].id},${flightNumber},'${airlineName}','${date}','${departure}','${departureTime}','${arrival}','${arrivalTime}')">Book Flight</button></td>`);
 							$('#flightsTable').append(row);
 						}
 					});
@@ -765,4 +768,106 @@ function addFlight(){
 			}	
 		}
 	});  
+}
+
+function bookFlight(instanceId,flightNumber,airlineName,departureDate,departureAirport,departureTime,arrivalAirport,arrivalTime){
+	let bookFlightDialog = `
+	<div id="bookFlightDialog" title="Enter Details to Book Flight: ${flightNumber}">
+	<form>
+	  First Name: <input id="firstName" type="text" name="First Name" placeholder="First Name" requried>
+	  Last Name: <input id="lastName" type="text" name="Last Name" placeholder="Last Name" requried>
+	  Age: <input id="age" type="number" name="Last Name" placeholder="Age" requried>
+	  Gender: <select id="gender" name="gender">
+	  	<option value="male">Male</option>
+	  	<option value="female">Female</option>
+	  </select>
+	  </form>
+	`;
+	$(bookFlightDialog)
+    .dialog({
+        resizable: false,
+        modal: true,
+        buttons: {
+            "Cancel": function() {
+                $( this ).dialog( "close" );
+            },
+            "Submit Booking": function() {
+				//Validate inputs
+				let firstName= $('#firstName').val();
+				if(firstName.length<=0){
+					alert("Must input a First Name to book a flight.");
+				}else{
+
+					let lastName= $('#lastName').val();
+					if(lastName.length<=0){
+						alert("Must input a Last Name to book a flight.");
+					}else{
+
+						let ageNum = $('#age').val();
+						if(ageNum.length<=0){
+							alert("Must input an Age to book a flight.")
+						}else{
+
+							let genderVal = $('#gender').val();
+							//Submit post to /tickets
+							$.ajax(root + 'tickets', {
+								type: 'POST',
+								dataType: 'json',
+								xhrFields: {withCredentials: true},
+								data: {
+									ticket: {
+										first_name:firstName,
+										last_name:lastName,
+										age:ageNum,
+										gender:genderVal,
+										instance_id:instanceId
+									}
+								},
+								success: (response) => {
+									//Add to user tickets
+									userTicketIds.push(response.id);
+									console.log("Successfully created ticket!");
+									console.log(response);
+
+									//Email user
+									emailUser(flightNumber,airlineName,departureDate,departureAirport,departureTime,arrivalAirport,arrivalTime,firstName,lastName,ageNum);
+
+									alert(`Successfully sent confirmation email and created ticket for flight: ${flightNumber}! Check bookings page or your student email to see your flight.`);
+								},
+								async: false
+							});
+							$( this ).dialog( "close" );
+						}
+					}
+				}
+            }
+        }
+    });
+}
+
+function emailUser(flightNumber,airlineName,departureDate,departureAirport,departureTime,arrivalAirport,arrivalTime,firstName,lastName,ageValue){
+	var service_id = "default_service";
+	var template_id = "template_9ClMtG9C";
+
+	var templateParams = {
+		to_email: `${flightUserOnyen}@live.unc.edu`,
+		to_name: flightUserOnyen,
+		flight_number: flightNumber,
+		airline_name: airlineName,
+		departure_date: departureDate,
+		departure_airport: departureAirport,
+		departure_time: departureTime,
+		arrival_airport: arrivalAirport,
+		arrival_time: arrivalTime,
+		first_name: firstName,
+		last_name: lastName,
+		age: ageValue
+	};
+	
+	emailjs.send(service_id, template_id, templateParams)
+		.then(function(response) {
+		   console.log('SUCCESS!', response.status, response.text);
+		}, function(error) {
+		   console.log('FAILED...', error);
+		});
 }
