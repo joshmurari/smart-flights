@@ -7,6 +7,35 @@
   top: 40px;
 }
 
+#arrivalform{
+  position: relative;
+  left: 350px;
+  top: -60px;
+}
+
+#departureform{
+  position: relative;
+  bottom: 70px;
+}
+
+#arrival-weather {
+  position: relative;
+  left: 185px;
+}
+
+#admin-title{
+  position: relative;
+  top: -300px;
+}
+
+
+#depdate {
+  position: relative;
+  left: 660px;
+  top: -250px;
+}
+
+
 h1 {
 
   font-family: 'Didact Gothic', sans-serif;
@@ -101,6 +130,13 @@ h3 {
 }
 
 
+.admin_options {
+  position: relative;
+  top: -400px;
+}
+
+
+
 .city_options {
   position: relative;
   bottom: -30px;
@@ -108,15 +144,33 @@ h3 {
 
 }
 
+#add-flight-details{
+  position: relative;
+  left: 40px;
+  bottom: -110px;
+}
+
 .date_options {
   position: relative;
-  bottom: -30px;
+  bottom: -120px;
+  left: 40px;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+#departureDate{
+  position: relative;
+  bottom: 143px;
+  left: 700px;
+  font-family: 'Didact Gothic', sans-serif;
+}
+
+#departure-date, #departure-time, #arrival-time {
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .autocomplete {
   font-size: 16px;  
   font-family: 'Didact Gothic', sans-serif;
-
 }
 
 * { box-sizing: border-box; }
@@ -188,9 +242,56 @@ input[type=submit] {
 
 /* FIND FLIGHT BUTTON */
 
+#addflightButton {
+  position: relative;
+  bottom: -100px;
+  left: -1050px;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  background-color: #538fbe;
+  padding: 20px 70px;
+  font-size: 24px;
+  font-family: 'Didact Gothic', sans-serif;
+  border: 1px solid #2d6898;
+
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, rgb(73,132,180)),
+      color-stop(1, rgb(97,155,203))
+  );
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 0px -1px 0px rgba(0,0,0,.5);
+  -webkit-box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+  -moz-box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+  box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+}
+
+#addflightButton:active{
+-webkit-box-shadow: 0px 2px 0px #2b638f, 0px 1px 6px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+-moz-box-shadow: 0px 2px 0px #2b638f, 0px 1px 6px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+box-shadow: 0px 2px 0px #2b638f, 0px 1px 6px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+
+-webkit-transform: translate(0, 4px);
+-moz-transform: translate(0, 4px);
+transform: translate(0, 4px);
+
+-webkit-transition: all .1s ease-in-out;
+-moz-transition: all .2s ease-in-out;
+transition: all .2s ease-in-out;
+}
+
+#addflightButton:focus {outline:0;}
+
 #findflightButton {
   position: relative;
-  bottom: -65px;
+  bottom: 150px;
+  left: 800px;
   display: inline-block;
   text-decoration: none;
   color: #fff;
@@ -401,7 +502,7 @@ body {
 
 .bookFlightPage{
   position: relative;
-  bottom: 300px;
+  bottom: 280px;
 }
 
 #flight-picker{
@@ -526,19 +627,101 @@ body {
 	100% {margin-left: -1000px;}
 }
 
-#weather-info {
-  padding-top: 100px;
+.dropbtn {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  background-color: #538fbe;
+  padding: 10px 20px;
+  font-size: 24px;
+  font-family: 'Didact Gothic', sans-serif;
+  border: 1px solid #2d6898;
+  left: 2px;
+  bottom: 10px;
+  background-image: -webkit-gradient(
+      linear,
+      left bottom,
+      left top,
+      color-stop(0, rgb(73,132,180)),
+      color-stop(1, rgb(97,155,203))
+  );
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  text-shadow: 0px -1px 0px rgba(0,0,0,.5);
+  /* -webkit-box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+  -moz-box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5);
+  box-shadow: 0px 6px 0px #2b638f, 0px 3px 15px rgba(0,0,0,.4), inset 0px 1px 0px rgba(255,255,255,.3), inset 0px 0px 3px rgba(255,255,255,.5); */
 }
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+  left: 30px;
+  bottom: -20px;
+
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+
+
+#weather-info {
+  position: relative;
+  left: 750px;
+  width: 50%;
+  height: 50%;
+  top: -300px;
+  font-size: 20px;
+}
+
 
 #optionHeader {
   font-family: 'Didact Gothic', sans-serif;
-  font-size: 30px;
+  font-size: 25px;
   text-align: center;
   color:  #19314b;
+  position: relative;
+  bottom: 110px;
+  left: -40px;
 }
 
 #flight_options{
   padding-top: 110px;
+  overflow: auto;
+  height: 60%;
 }
 
 th {
@@ -560,12 +743,119 @@ td {
 
 #header {
   background: #ffffff;
+  font-size: 20px;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background: #71a0d3;
 }
 
 tr:nth-child(odd) {
   background: rgb(163, 156, 228);
+} */
+
+#flightsTable {
+  background: none;
+  position: relative;
+  left: 270px;
+  bottom: 100px;
 }
+
+#bookFlightButton {
+	-moz-box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+	box-shadow:inset 0px 1px 0px 0px #7a8eb9;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #637aad), color-stop(1, #5972a7));
+	background:-moz-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-webkit-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-o-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:-ms-linear-gradient(top, #637aad 5%, #5972a7 100%);
+	background:linear-gradient(to bottom, #637aad 5%, #5972a7 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#637aad', endColorstr='#5972a7',GradientType=0);
+	background-color:#637aad;
+	-moz-border-radius:14px;
+	-webkit-border-radius:14px;
+	border-radius:14px;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family: 'Didact Gothic', sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+}
+#bookFlightButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #5972a7), color-stop(1, #637aad));
+	background:-moz-linear-gradient(top, #5972a7 5%, #637aad 100%);
+	background:-webkit-linear-gradient(top, #5972a7 5%, #637aad 100%);
+	background:-o-linear-gradient(top, #5972a7 5%, #637aad 100%);
+	background:-ms-linear-gradient(top, #5972a7 5%, #637aad 100%);
+	background:linear-gradient(to bottom, #5972a7 5%, #637aad 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#5972a7', endColorstr='#637aad',GradientType=0);
+	background-color:#5972a7;
+}
+#bookFlightButton:active {
+	position:relative;
+	top:1px;
+}
+
+#longFlightTable{
+
+
+
+}
+
+.ui-dialog {
+  padding: 5px;
+  }
+  .ui-dialog .ui-dialog-titlebar {
+  background-color: #19314b;
+  position: relative;
+  display: inline-table;
+  width: 100%;
+  }
+
+  .ui-dialog-title{
+  margin-top: 5px;
+  padding-top: 10px;
+  display: inline-block;  
+  font-size: 15px;
+  color: white;
+  width: 200px;
+  }
+
+  .ui-dialog-titlebar-close{
+    margin-left: 5px; 
+    margin-bottom: 15px;
+    padding: 5px;
+    display: inline-block;
+    width: 60px;
+  }
+
+  .ui-dialog .ui-dialog-content {
+  padding: 20px;
+  font-size:18px;
+  color:#CAAD75;
+  background-color: #FDF8E4;
+  overflow: auto;
+  display: inline-block;
+  }
+  .ui-dialog .ui-dialog-buttonpane {
+  text-align: left;
+  background-color: #846733;
+  align-items: flex-end;
+  }
+  .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  padding: 5px;
+  width: 100%;
+  background-color: #19314b;
+  align-items: flex-end;
+  }
+  .ui-dialog .ui-dialog-buttonpane button {
+  margin-left: 10px;
+  margin-right: 10px; 
+  padding: 5px;
+  cursor: pointer;
+  }
+ 
