@@ -222,10 +222,12 @@ input[type=submit] {
 
 .ui-datepicker-header {
   padding-top: 80px;
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .ui-datepicker-title {
   padding-left: 10px;
+  font-family: 'Didact Gothic', sans-serif;
 }
 
 .ui-corner-all {
@@ -235,8 +237,18 @@ input[type=submit] {
   font-size: 14px;
   color: rgb(2, 97, 97);
   cursor: pointer;  
+  font-family: 'Didact Gothic', sans-serif;
 }
 
+
+#ageform, #genderform {
+  padding-top: 10px;
+}
+
+#gender {
+  font-size: 14px;
+  font-family: 'Didact Gothic', sans-serif;
+}
 /* FIND FLIGHT BUTTON */
 
 #addflightButton {
@@ -812,20 +824,18 @@ tr:nth-child(odd) {
 	top:1px;
 }
 
-#longFlightTable{
-
-
-
-}
+#
 
 .ui-dialog {
   padding: 5px;
+  font-family: 'Didact Gothic', sans-serif;
   }
   .ui-dialog .ui-dialog-titlebar {
   background-color: #19314b;
   position: relative;
   display: inline-table;
   width: 100%;
+  font-family: 'Didact Gothic', sans-serif;
   }
 
   .ui-dialog-title{
@@ -835,6 +845,7 @@ tr:nth-child(odd) {
   font-size: 15px;
   color: white;
   width: 200px;
+  font-family: 'Didact Gothic', sans-serif;
   }
 
   .ui-dialog-titlebar-close{
@@ -843,31 +854,36 @@ tr:nth-child(odd) {
     padding: 5px;
     display: inline-block;
     width: 60px;
+    font-family: 'Didact Gothic', sans-serif;
   }
 
   .ui-dialog .ui-dialog-content {
   padding: 20px;
   font-size:18px;
-  color:#CAAD75;
-  background-color: #FDF8E4;
+  color:#14273c;
+  background-color: #99badd;
   overflow: auto;
   display: inline-block;
+  font-family: 'Didact Gothic', sans-serif;
   }
   .ui-dialog .ui-dialog-buttonpane {
   text-align: left;
-  background-color: #846733;
+  background-color: #99badd;
   align-items: flex-end;
+  font-family: 'Didact Gothic', sans-serif;
   }
   .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
   padding: 5px;
   width: 100%;
   background-color: #19314b;
   align-items: flex-end;
+  font-family: 'Didact Gothic', sans-serif;
   }
   .ui-dialog .ui-dialog-buttonpane button {
   margin-left: 10px;
   margin-right: 10px; 
   padding: 5px;
   cursor: pointer;
+  font-family: 'Didact Gothic', sans-serif;
   }
  
