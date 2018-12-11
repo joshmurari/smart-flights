@@ -13,7 +13,10 @@ todStr = mm + '-' + dd + '-' + yyyy;
 
 $(document).ready(() => {
 	makeHomePage();
-	//fillValuesInTextBoxes();
+	$("#weather-infos").hide();
+	$("#sortByButton").hide();
+	fillValuesInTextBoxes();
+
     $('#submit_login').on('click', () => {
 	
 	let user = $('#user').val();
@@ -101,14 +104,16 @@ homebody = `
 		</div>
 		<div id="flight-picker"></div>
 	</div>
-	
+	<div id="weather-infos">
+	<h4> Weather Forecast </h4>
 	<div id="weather-info">
 	<div id="departure-weather"></div>
 	<div id="arrival-weather"></div>
 	</div>
+	</div>
 
 <div class="dropdown">
-  <button class="dropbtn">Sort By</button>
+  <button id="sortByButton" class="dropbtn">Sort By</button>
   <div class="dropdown-content">
     <a href="#">Arrival Time</a>
     <a href="#">Departure Time</a>
@@ -262,6 +267,7 @@ document.addEventListener("click", function (e) {
 }
 
 function findFlights(){
+	
 	//Get Departure Airport
 	var departure = $('#departureInput').val()
 	console.log(`Departure = ${departure}`)
@@ -324,6 +330,8 @@ function findFlights(){
 					dataType: 'json',
 					xhrFields: {withCredentials: true},
 					success: (response) => {
+						$("#weather-infos").show();
+						$("#sortByButton").show();
 						console.log("Flights with specifed departure airport and arrival airport:");
 						console.log(response);
 
@@ -491,6 +499,7 @@ function updateWeather(departure, arrival){
 				xhrFields: {withCredentials: true},
 				success: (response) => {
 					let departureName = response.name;
+					let departureCode = response.code;
 					let departureLat = response.latitude;
 					let departureLon = response.longitude;
 
@@ -502,7 +511,8 @@ function updateWeather(departure, arrival){
 							console.log("Weather:");
 							console.log(response.main.temp);
 							let weatherDepature = Math.round(response.main.temp);
-							$('#departure-weather').text(`Weather at ${departureName}: ${weatherDepature}`);
+							$('#departure-weather').text(`${departureCode}: ${weatherDepature} ` +String.fromCharCode(176) + 'F');
+
 
 							//Get arrival airport
 							$.ajax(root + `airports/${arrival_id}`, {
@@ -511,6 +521,7 @@ function updateWeather(departure, arrival){
 								xhrFields: {withCredentials: true},
 								success: (response) => {
 									let arrivalName = response.name;
+									let arrivalCode = response.code;
 									let arrivalLat = response.latitude;
 									let arrivalLon = response.longitude;
 
@@ -522,7 +533,8 @@ function updateWeather(departure, arrival){
 											console.log("Weather:");
 											console.log(response.main.temp);
 											let weatherArrival = Math.round(response.main.temp);
-											$('#arrival-weather').text(`Weather at ${arrivalName}: ${weatherArrival}`);
+											$('#arrival-weather').text(`${arrivalCode}: ${weatherArrival} ` + String.fromCharCode(176) + 'F');
+										
 										}
 									}); 					
 								}

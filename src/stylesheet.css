@@ -18,10 +18,7 @@
   bottom: 70px;
 }
 
-#arrival-weather {
-  position: relative;
-  left: 185px;
-}
+
 
 #admin-title{
   position: relative;
@@ -506,8 +503,10 @@ body {
 }
 
 #flight-picker{
-  overflow: scroll;
-  height: 30%;
+  position: absolute;
+  overflow: auto;
+  height: 300%;
+  width: 100%;
 }
 
 #clouds{
@@ -639,7 +638,7 @@ body {
   font-family: 'Didact Gothic', sans-serif;
   border: 1px solid #2d6898;
   left: 2px;
-  bottom: 10px;
+  bottom: 20px;
   background-image: -webkit-gradient(
       linear,
       left bottom,
@@ -696,14 +695,19 @@ body {
   background-color: #3e8e41;
 }
 
+h4 {
+  font-size: 40px;
+  position: absolute;
+  right: 10px;
+  top: 230px;
+}
 
 
 #weather-info {
-  position: relative;
-  left: 750px;
-  width: 50%;
+  position: absolute;
   height: 50%;
-  top: -300px;
+  width: 20%;
+  right: 5px;
   font-size: 20px;
 }
 
@@ -737,8 +741,16 @@ td {
 }
 
 #departure-weather {
-  text-align: center;
+  padding-top: 10px;
+  font-size: 30px;
   color:  #245181;
+  text-align: center;
+}
+
+#arrival-weather {
+  font-size: 30px;
+  padding-top: 5px;
+  text-align: center;
 }
 
 #header {
