@@ -14,10 +14,10 @@ today = yyyy + '-' + mm + '-' + dd;
 todStr = mm + '-' + dd + '-' + yyyy;
 
 $(document).ready(() => {
-	makeHomePage();
+	//makeHomePage();
 	$("#weather-infos").hide();
 	$("#sortByButton").hide();
-	fillValuesInTextBoxes();
+	//fillValuesInTextBoxes();
 
     $('#submit_login').on('click', () => {
 	

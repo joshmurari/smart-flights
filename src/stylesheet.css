@@ -696,9 +696,9 @@ body {
 }
 
 h4 {
-  font-size: 40px;
+  font-size: 30px;
   position: absolute;
-  right: 10px;
+  right: 30px;
   top: 230px;
 }
 
@@ -742,13 +742,13 @@ td {
 
 #departure-weather {
   padding-top: 10px;
-  font-size: 30px;
+  font-size: 25px;
   color:  #245181;
   text-align: center;
 }
 
 #arrival-weather {
-  font-size: 30px;
+  font-size: 25px;
   padding-top: 5px;
   text-align: center;
 }
