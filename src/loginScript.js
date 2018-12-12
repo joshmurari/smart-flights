@@ -437,9 +437,9 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 				xhrFields: {withCredentials: true},
 				success: (response) => {
 					//Get departure time
-					let departureTime = (new Date(response.departs_at)).toLocaleTimeString();
+					let departureTime = (new Date(response.departs_at)).toLocaleTimeString('en-US',{timeZone:'Etc/UTC'});
 					//Get arrival time
-					let arrivalTime = (new Date(response.arrives_at)).toLocaleTimeString();
+					let arrivalTime = (new Date(response.arrives_at)).toLocaleTimeString('en-US',{timeZone:'Etc/UTC'});
 					//Get flight number
 					let flightNumber = response.number;
 					//Get airlineId
