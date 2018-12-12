@@ -83,7 +83,7 @@ homebody = `
           <a href="#" onclick="makeAdminPage();" class="hover_link">Admin</a>
         </li>
         <li>
-          <a href="#s" class="hover_link">Log Out</a>
+          <a href="#s" class="hover_link" onclick = "location.reload()";>Log Out</a>
         </li>
       </ul>
     </nav>
@@ -433,9 +433,9 @@ function buildFlightsInterface(dateFound,flightInstances,arrival,departure){
 				xhrFields: {withCredentials: true},
 				success: (response) => {
 					//Get departure time
-					let departureTime = (new Date(response.departs_at)).toLocaleTimeString();
+					let departureTime = (new Date(response.departs_at)).toLocaleTimeString('en-us');
 					//Get arrival time
-					let arrivalTime = (new Date(response.arrives_at)).toLocaleTimeString();
+					let arrivalTime = (new Date(response.arrives_at)).toLocaleTimeString('en-us');
 					//Get flight number
 					let flightNumber = response.number;
 					//Get airlineId
@@ -587,7 +587,7 @@ function makeAdminPage(){
 			<a href="#" onclick="makeAdminPage();" class="hover_link">Admin</a>
 			</li>
 			<li>
-			<a href="#" class="hover_link">Log Out</a>
+			<a href="#" class="hover_link" onclick = "location.reload()">Log Out</a>
 			</li>
 		</ul>
 		</nav>
@@ -970,7 +970,7 @@ function sortTable(string) {
 			xarnew = new Date(xar);
 			yarnew = new Date(yar);
 
-			if (xarnew - xdenew > yarnew - ydenew) {
+			if ((xarnew - xdenew) > (yarnew - ydenew)) {
 			// If so, mark as a switch and break the loop:
 			shouldSwitch = true;
 			break;
