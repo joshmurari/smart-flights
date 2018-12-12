@@ -14,9 +14,9 @@ today = yyyy + '-' + mm + '-' + dd;
 todStr = mm + '-' + dd + '-' + yyyy;
 
 $(document).ready(() => {
-	//makeHomePage();
-	$("#weather-infos").hide();
-	$("#sortByButton").hide();
+	// makeHomePage();
+	// $("#weather-infos").hide();
+	// $("#sortByButton").hide();
 	//fillValuesInTextBoxes();
 
     $('#submit_login').on('click', () => {
