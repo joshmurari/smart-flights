@@ -18,11 +18,24 @@
   bottom: 70px;
 }
 
+#adminarrival {
+  position: relative;
+  right: -40px;
+  bottom: -135px;
+}
+
+#admindeparture {
+  position: relative;
+  right: -40px;
+  bottom: -125px;
+}
+
 
 
 #admin-title{
   position: relative;
   top: -300px;
+  left: 40px;
 }
 
 
@@ -149,7 +162,7 @@ h3 {
 
 .date_options {
   position: relative;
-  bottom: -120px;
+  bottom: -170px;
   left: 40px;
   font-family: 'Didact Gothic', sans-serif;
 }
@@ -652,7 +665,7 @@ body {
   font-family: 'Didact Gothic', sans-serif;
   border: 1px solid #2d6898;
   left: 2px;
-  bottom: 20px;
+  bottom: 30px;
   background-image: -webkit-gradient(
       linear,
       left bottom,
@@ -712,8 +725,14 @@ body {
 h4 {
   font-size: 30px;
   position: absolute;
-  right: 30px;
-  top: 230px;
+  right: 35px;
+  top: -40px;
+}
+
+#weather-border {
+  position: relative;
+  bottom: -30px;
+  left: -30px;
 }
 
 

@@ -111,11 +111,13 @@ homebody = `
 		
 		<div id="flight-picker"></div>
 	</div>
+	<div id="weather-border">
 	<div id="weather-infos">
 	<h4> Weather Forecast </h4>
 	<div id="weather-info">
 	<div id="departure-weather"></div>
 	<div id="arrival-weather"></div>
+	</div>
 	</div>
 	</div>
 
@@ -605,11 +607,11 @@ function makeAdminPage(){
 					Airline: <input id="airlineInput" type="text" name="Airline" placeholder="Airline">
 					</div></div>
 					<div autocomplete="off">
-              <div class="autocomplete" style="width:300px;">
+              <div id="admindeparture" class="autocomplete" style="width:300px;">
 					Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport">
 					</div></div>
 					<div autocomplete="off">
-              <div class="autocomplete" style="width:300px;">
+              <div id="adminarrival" class="autocomplete" style="width:300px;">
 					Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br>
 					</div></div>
 				<div class="date_options">
