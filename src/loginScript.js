@@ -77,9 +77,6 @@ homebody = `
           <a href="#" onclick="makeHomePage();" class="hover_link">Home</a>
         </li>
         <li>
-          <a href="#" class="hover_link">Bookings</a>
-        </li>
-        <li>
           <a href="#" onclick="makeAdminPage();" class="hover_link">Admin</a>
         </li>
         <li>
@@ -585,9 +582,6 @@ function makeAdminPage(){
 		<ul>
 			<li>
 			<a href="#" onclick="makeHomePage();" class="hover_link">Home</a>
-			</li>
-			<li>
-			<a href="#" class="hover_link">Bookings</a>
 			</li>
 			<li>
 			<a href="#" onclick="makeAdminPage();" class="hover_link">Admin</a>
