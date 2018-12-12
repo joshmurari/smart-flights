@@ -96,15 +96,19 @@ homebody = `
             <div autocomplete="off">
               <div class="autocomplete" style="width:300px;">
 		<div id="depatureform"> &nbsp; Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport" autofocus> </div>
+		</div>
+		<div autocomplete="off">
+              <div class="autocomplete" style="width:300px;">
 		<div id="arrivalform"> &nbsp; Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br> </div>
-			  </div>
+		</div>
+		</div>
 			  
 			  <div class="date_options">
 				<p id="depdate"> Departure Date: &nbsp; </p>
 				</div><input id="departureDate" type="date" name="Departure">
                 &nbsp; &nbsp; &nbsp;
 				<button id="findflightButton" onclick="findFlights()">Find Flights</button>
-		</div>
+		
 		<div id="flight-picker"></div>
 	</div>
 	<div id="weather-infos">
@@ -599,9 +603,15 @@ function makeAdminPage(){
 				<div autocomplete="off">
 				<div id="add-flight-details" class="autocomplete" style="width:300px;">
 					Airline: <input id="airlineInput" type="text" name="Airline" placeholder="Airline">
+					</div></div>
+					<div autocomplete="off">
+              <div class="autocomplete" style="width:300px;">
 					Departure: <input id="departureInput" type="text" name="Departure" placeholder="Departure Airport">
+					</div></div>
+					<div autocomplete="off">
+              <div class="autocomplete" style="width:300px;">
 					Arrival:   <input id="arrivalInput" type="text" name="Arrival" placeholder="Arrival Airport"><br>
-				</div>
+					</div></div>
 				<div class="date_options">
 					&nbsp; Flight Number : &nbsp; &nbsp;<input type="number" id="flightNumber" name="Flight Number" placeholder="Enter Flight Number">
 					&nbsp; Date : &nbsp; &nbsp; <input id="departure-date" type="date" name="Departure">
