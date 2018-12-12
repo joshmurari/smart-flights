@@ -83,7 +83,7 @@ homebody = `
           <a href="#" onclick="makeAdminPage();" class="hover_link">Admin</a>
         </li>
         <li>
-          <a href="#s" class="hover_link">Log Out</a>
+          <a href="#s" class="hover_link" onclick = "location.reload()";>Log Out</a>
         </li>
       </ul>
     </nav>
@@ -591,7 +591,7 @@ function makeAdminPage(){
 			<a href="#" onclick="makeAdminPage();" class="hover_link">Admin</a>
 			</li>
 			<li>
-			<a href="#" class="hover_link">Log Out</a>
+			<a href="#" class="hover_link" onclick = "location.reload()">Log Out</a>
 			</li>
 		</ul>
 		</nav>
@@ -980,7 +980,7 @@ function sortTable(string) {
 			xarnew = new Date(xar);
 			yarnew = new Date(yar);
 
-			if (xarnew - xdenew > yarnew - ydenew) {
+			if ((xarnew - xdenew) > (yarnew - ydenew)) {
 			// If so, mark as a switch and break the loop:
 			shouldSwitch = true;
 			break;
