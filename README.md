@@ -1,5 +1,6 @@
 # smart-flights
-Final Project for COMP-426
+Final Project for COMP 426: Modern Web Development 
+Authors: Josh Murari, Aman Dalal, and Tejas Paruthooli
 
 # 3 Flights API Endpoints GET
 Update Drop Box for Airlines - AUTOCOMPLETE FORM INPUT
@@ -12,7 +13,7 @@ Book a flight - tickets endpoint
 - This will open up payment 'mode'
 Create a private charter flight with specific times -airport and flight api
 
-# 3-d Party APIs
-Weather api for flight dates
+# Third Party APIs
+Weather API for flight dates
 Gmail to send user email of ticket and flight information
 Google maps to show flight path
