@@ -1,5 +1,5 @@
 # smart-flights
-Final Project for COMP 426: Modern Web Development 
+Final Project for COMP 426: Modern Web Development </br >
 Authors: Josh Murari, Aman Dalal, and Tejas Paruthooli
 
 # 3 Flights API Endpoints GET
